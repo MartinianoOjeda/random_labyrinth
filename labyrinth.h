@@ -50,6 +50,8 @@ lab createBorder(lab);
     lab initializeArray(lab);
     lab edges(lab);
     lab corners(lab);
+int selectPart();
+lab creteLabyrinth(lab);
 void printArray(int, int, lab);
 
 
@@ -128,6 +130,54 @@ lab createBorders(lab l) {
     l = initializeArray(l);
     l = edges(l);
     l = corners(l);
+    return l;
+}
+
+int selectPart() {
+    int n = 0;
+    Sleep(1);
+    n = randomNumber();
+    switch(n) {
+        case 1: n = VERT_LINE_INTER_MID_LEFT;
+        break;
+        case 2: n = VERT_LINE_INTER_MID_RIGHT;
+        break;
+        case 3: n = VERT_LINE;
+        break;
+        case 4: n = HORI_LINE;
+        break;
+        case 5: n = RIGHT_UPPER_CORNER;
+        break;
+        case 6: n = RIGHT_LOWER_CORNER;
+        break;
+        case 7: n = LEFT_LOWER_CORNER;
+        break;
+        case 8: n = LEFT_UPPER_CORNER;
+        break;
+        case 9: n = HORI_LINE_INTER_MID_UP;
+        break;
+        case 10: n = HORI_LINE_INTER_MID_DOWN;
+        break;
+        case 11: n = CROSSING;
+        break;
+    }
+
+    return n;
+}
+
+lab creteLabyrinth(lab l) {
+    int i, j;
+
+    l = createBorders(l);
+    
+    for(i = 0; i < X_SIZE; i++) {
+        for(j = 0; j < Y_SIZE; j++) {
+            if(l.matix_lab[i][j] == EMPTY) {
+                l.matix_lab[i][j] = selectPart();
+            }
+        }
+    }
+
     return l;
 }
 

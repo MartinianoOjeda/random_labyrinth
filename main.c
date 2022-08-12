@@ -13,7 +13,7 @@ int main() {
 
     hideCursor();
 
-    l = createBorders(l);
+    l = creteLabyrinth(l);
     printArray(X_DIS, Y_DIS, l);
 
     while(!game_over) {
